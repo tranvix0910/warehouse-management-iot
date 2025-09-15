@@ -5,8 +5,8 @@
 // const char* password = "";
 // const char* ssid = "311HHN Lau 1";
 // const char* password = "@@1234abcdlau1";
-const char* ssid = "Vi";
-const char* password = "09102004";
+const char* ssid = "Huhu";
+const char* password = "hahahaha";
 
 // Timeout for WiFi connection (10 seconds)
 const unsigned long timeout = 10000;
