@@ -1,6 +1,8 @@
 #include "warehouse_management.h"
 #include "wifi_connect.h"
 #include "firebase.h"
+#include "temp_humi.h"
+#include "rc522.h"
 
 void warehouseManagementInit() {
     Serial.begin(115200);
@@ -8,6 +10,8 @@ void warehouseManagementInit() {
     
     if (wifiConnect()) {
         delay(2000); // Wait for WiFi to stabilize
+        tempHumiInit(); // Initialize DHT11 sensor
+        rc522Init(); // Initialize RC522 reader
         firebaseInit();
         Serial.println("Warehouse management initialized");
     } else {
@@ -16,6 +20,8 @@ void warehouseManagementInit() {
         // Retry WiFi connection
         if (wifiConnect()) {
             delay(2000);
+            tempHumiInit(); // Initialize DHT11 sensor
+            rc522Init(); // Initialize RC522 reader
             firebaseInit();
             Serial.println("Warehouse management initialized on retry");
         } else {
@@ -26,4 +32,5 @@ void warehouseManagementInit() {
 
 void warehouseManagementLoop() {
     appLoop();
+    delay(5);
 }

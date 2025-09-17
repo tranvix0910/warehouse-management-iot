@@ -22,7 +22,7 @@ extern RealtimeDatabase Database;
 void firebaseInit();
 void processData(AsyncResult &aResult);
 void appLoop();
-void generateRandomSensorData();
+void readSensorData();
 void configureSSLClient();
 
 #endif // FIREBASE_H
