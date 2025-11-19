@@ -5,5 +5,6 @@
 
 void warehouseManagementInit();
 void warehouseManagementLoop();
+void performQRScan();
 
 #endif // WAREHOUSE_MANAGEMENT_H

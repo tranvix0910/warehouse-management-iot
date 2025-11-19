@@ -24,5 +24,9 @@ void processData(AsyncResult &aResult);
 void appLoop();
 void readSensorData();
 void configureSSLClient();
+void sendTempHumiToFirebase(float temperature, float humidity);
+void sendRfidQrToFirebase(String rfidUid, String qrData);
+void sendAllDataToFirebase(float temperature, float humidity, String rfidUid, String qrData);
+void readCheckFlagsFromFirebase();
 
 #endif // FIREBASE_H

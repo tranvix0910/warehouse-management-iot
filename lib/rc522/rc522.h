@@ -5,9 +5,7 @@
 #include <SPI.h>
 #include <MFRC522.h>
 
-// Pin mapping for ESP32-S3
 #define RC522_SDA 5
-// Use valid output-capable pins for ESP32-S3 SPI
 #define RC522_SCK 12
 #define RC522_MOSI 11
 #define RC522_MISO 13

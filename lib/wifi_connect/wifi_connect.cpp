@@ -1,12 +1,8 @@
 #include "wifi_connect.h"
 
-// WiFi credentials
-// const char* ssid = "PTIT.HCM_CanBo";
-// const char* password = "";
-// const char* ssid = "311HHN Lau 1";
-// const char* password = "@@1234abcdlau1";
-const char* ssid = "Huhu";
-const char* password = "hahahahaa";
+
+const char* ssid = "AEPTIT_1";
+const char* password = "20242024";
 
 // Timeout for WiFi connection (10 seconds)
 const unsigned long timeout = 10000;

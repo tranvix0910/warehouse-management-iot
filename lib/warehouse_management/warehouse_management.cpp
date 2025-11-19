@@ -3,6 +3,7 @@
 #include "firebase.h"
 #include "temp_humi.h"
 #include "rc522.h"
+#include "qr_scanner.h"
 
 void warehouseManagementInit() {
     Serial.begin(115200);
@@ -12,6 +13,7 @@ void warehouseManagementInit() {
         delay(2000); // Wait for WiFi to stabilize
         tempHumiInit(); // Initialize DHT11 sensor
         rc522Init(); // Initialize RC522 reader
+        qrScannerInit(); // Initialize QR scanner
         firebaseInit();
         Serial.println("Warehouse management initialized");
     } else {
@@ -22,6 +24,7 @@ void warehouseManagementInit() {
             delay(2000);
             tempHumiInit(); // Initialize DHT11 sensor
             rc522Init(); // Initialize RC522 reader
+            qrScannerInit(); // Initialize QR scanner
             firebaseInit();
             Serial.println("Warehouse management initialized on retry");
         } else {
@@ -31,6 +34,7 @@ void warehouseManagementInit() {
 }
 
 void warehouseManagementLoop() {
+    // Run the main app loop (handles Firebase, temperature, humidity, RFID, QR)
     appLoop();
-    delay(5);
+    delay(200); // Increased delay to prevent stack overflow in camera task
 }
