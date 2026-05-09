@@ -11,7 +11,7 @@
 #define WEB_API_KEY "AIzaSyC7X5j-uDMLjnGHeYth2yA_2pgzfy8Eplc"
 #define DATABASE_URL "https://mobile-app-development-1a585-default-rtdb.asia-southeast1.firebasedatabase.app/"
 #define USER_EMAIL "khanhnlm2509@gmail.com"
-#define USER_PASS "123456"
+#define USER_PASS "123456789"
 
 extern UserAuth user_auth;
 extern FirebaseApp app;
@@ -24,5 +24,9 @@ void processData(AsyncResult &aResult);
 void appLoop();
 void readSensorData();
 void configureSSLClient();
+void sendTempHumiToFirebase(float temperature, float humidity);
+void sendRfidQrToFirebase(String rfidUid, String qrData);
+void sendAllDataToFirebase(float temperature, float humidity, String rfidUid, String qrData);
+void readCheckFlagsFromFirebase();
 
 #endif // FIREBASE_H
