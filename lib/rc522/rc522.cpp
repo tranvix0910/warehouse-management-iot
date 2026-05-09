@@ -4,9 +4,8 @@ static MFRC522 *rfid = nullptr;
 
 void rc522Init(){
     Serial.println("Initializing RC522...");
-    
-    SPI.end();
-    SPI.begin(RC522_SCK, RC522_MISO, RC522_MOSI, RC522_SDA);
+    // Bus SPI chung: không truyền CS mặc định (-1), mỗi slave giữ CS riêng (40 RC522, 39 PN532)
+    SPI.begin(RFID_SPI_SCK, RFID_SPI_MISO, RFID_SPI_MOSI, -1);
     
     if (!rfid){
         rfid = new MFRC522(RC522_SDA, RC522_RST);
@@ -33,13 +32,32 @@ void rc522Init(){
     }
 }
 
+void rc522ReleaseBus() {
+    if (!rfid) {
+        return;
+    }
+    rfid->PCD_AntennaOff();
+    pinMode(RC522_SDA, OUTPUT);
+    digitalWrite(RC522_SDA, HIGH);
+}
+
+void rc522PrepareRead() {
+    if (!rfid) {
+        return;
+    }
+    pinMode(RC522_SDA, OUTPUT);
+    digitalWrite(RC522_SDA, HIGH);
+    rfid->PCD_AntennaOn();
+    rfid->PCD_SetAntennaGain(rfid->RxGain_max);
+}
+
 bool rc522ReadUID(String &uidOut){
     uidOut = "";
     if (!rfid){
         return false;
     }
-    
-    rfid->PCD_SetAntennaGain(rfid->RxGain_max);
+
+    rc522PrepareRead();
     String uidString = "";  // Biến lưu UID dưới dạng chuỗi
 
     if (rfid->PICC_IsNewCardPresent()) {

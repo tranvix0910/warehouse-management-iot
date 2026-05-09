@@ -1,0 +1,2 @@
+# Stack task camera (tránh Stack canary trên cam_task khi QVGA + DMA)
+CONFIG_CAMERA_TASK_STACK_SIZE=32768
