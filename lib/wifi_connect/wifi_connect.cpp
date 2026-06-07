@@ -5,8 +5,8 @@
 #include "lwip/ip4_addr.h"
 
 // Sửa trực tiếp SSID và mật khẩu tại đây
-const char* ssid = "AEPTIT";
-const char* password = "20242024";
+const char* ssid = "RUBY'S COFFEE 2";
+const char* password = "33337777";
 
 const unsigned long timeout = 10000;
 
